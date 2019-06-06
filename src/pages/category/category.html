@@ -81,14 +81,14 @@
                     <li class="goods-item"  
                         v-for="(list,index) in ranKData.hotGoods">
                          <!-- ada{{ranKData.hotGoods}} -->
-                      <a href="https://h5.youzan.com/v2/showcase/goods?alias=27cjv5wdsb4to&amp;source=yzapp&amp;f_platform=yzapp">
+                      <a :href="'goods.html?id='+list.id">
                         <div class="thumb badge center-img">
                           <img :src="list.img">
                           <span class="num">{{index+1}}</span>
                         </div>
                         <div class="detail">
                           <div class="title">{{list.name}}</div>
-                          <div class="price">￥{{list.price | number}}</div>
+                          <div class="price">￥{{list.price | currency}}</div>
                           <div class="recommend">
                             <span>推荐值:</span>
                             <span>{{list.recommend}}</span>
@@ -138,6 +138,7 @@
               <ul class="category-content">
                 <li class="category-item js-category-item" data-item-id="85" :data-item-name="list.name"
                     v-for="list in subData.brandList"
+                    @click="toSearch(list)"
                     >
                   <img :src="list.img" :alt="list.name" class="category-img">
                   <span class="category-item-name">
@@ -150,6 +151,7 @@
               <ul class="category-content">
                 <li class="category-item js-category-item" data-item-id="10" :data-item-name="list.name"
                     v-for="list in subData.categoryList"
+                    @click="toSearch(list)"
                    >
                   <img :src="list.img" :alt="list.name" class="category-img">
                   <span class="category-item-name">

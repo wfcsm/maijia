@@ -3,7 +3,11 @@ let  url = {
     banner:'index/banner',
     topList:'category/topList',
     subList:'category/subList',
-    rank:'category/rank'
+    rank:'category/rank',
+    searchList:'search/list',
+    details:'goods/details',
+    deal:'goods/deal',
+    addCart:'cart/add'
 }
 // let host = 'http://rap2api.taobao.org/app/mock/7058/'
 let host=" https://www.easy-mock.com/mock/5cf84fc48cdafe1c0056bf33/maijia/"
