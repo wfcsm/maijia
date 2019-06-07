@@ -23,7 +23,7 @@ new Vue({
     methods:{
         getList(){
             axios.get(url.cartLists).then(res=>{
-                this.lists = res.data.cartList
+                let lists = res.data.cartList
                 // this.a=3
                 // this.$nextTick(()=>{
                 //     console.log(res.data.cartList)
@@ -33,19 +33,17 @@ new Vue({
                 
                 // let lists = res.data.cartList
                 // console.log(lists)
-                // lists.forEach(shop=> {
-                //     shop.checked = true
-                //     shop.goodsList.forEach(good=>{
-                //         good.checked = true
-                //     })
-                // })
-               
-                // this.lists = lists;
-                
-                
+                lists.forEach(shop=> {
+                    shop.checked = true
+                    shop.goodsList.forEach(good=>{
+                        good.checked = true
+                    })
+                })
+                this.lists = lists;
             })
         },
         selectGood(good){
+            console.log(good.checked)
             good.checked = !good.checked
         }
     },
