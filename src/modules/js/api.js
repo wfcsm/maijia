@@ -7,7 +7,11 @@ let  url = {
     searchList:'search/list',
     details:'goods/details',
     deal:'goods/deal',
-    addCart:'cart/add'
+    addCart:'cart/add',
+    cartLists:'cart/list',
+    cartReduce:'cart/reduce',
+    cartRemove:'cart/remove',
+    cartMreove:'cart/mremove'
 }
 // let host = 'http://rap2api.taobao.org/app/mock/7058/'
 let host=" https://www.easy-mock.com/mock/5cf84fc48cdafe1c0056bf33/maijia/"
