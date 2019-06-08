@@ -6,6 +6,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import url from 'js/api.js'
 import mixin from 'js/mixin.js'
+import Cart from 'js/cartService.js'
 
 new Vue({
     el:'.container',
@@ -14,6 +15,7 @@ new Vue({
         total:0,
         editingShop:null,
         editingShopIndex:-1,
+        number:null
         // removePopup : false 
     },
     computed:{
@@ -79,7 +81,7 @@ new Vue({
                 })
             }
             return arr
-        }
+        },
         
     },
     created(){
@@ -135,25 +137,17 @@ new Vue({
             this.editingShopIndex = shop.editing ? shopIndex : -1
         },
         reduce(good){
-            if(good.numer ===1) return
-            axios.post(url.cartReduce,{
-                id:good.id,
-                number:1
-            }).then(res=>{
+            Cart.reduce(good.id).then(res=>{
                 good.number--
             })
         },
         add(good){
-            axios.post(url.addCart,{
-                id:good.id,
-                number:1
-            }).then(res=>{
+            Cart.add(good.id).then(res=>{
                 good.number++
             })
         },
         remove(shop,shopIndex,good,goodIndex){
-            // console.log(1)
-            // this.removePopup = true
+
             axios.post(url.cartRemove,{
                 id:good.id
             }).then(res=>{
@@ -197,7 +191,20 @@ new Vue({
                 }
 
             })
-        }
+        },
+        // yz(event,number){
+        //    let value = event.target.value
+        //    let ts = /^[1-9][0-9]*$/
+        //    if(ts.test(value)){
+        //     console.log(1)
+        //      console.log(value)
+        //      event.target.value=value
+        //      console
+        //    }else{
+        //     console.log(2)
+        //     event.target.value=number
+        //    }
+        // }
     },
     mixins:[mixin]
 })
