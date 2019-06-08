@@ -24,20 +24,25 @@ import Address from 'js/addressService'
 import axios from 'axios'
 import url from 'js/api.js'
 export default {
-  data(){
-    return{
-      lists:null
+  // data(){
+  //   return{
+  //     lists:null
+  //   }
+  // },
+  computed:{
+    lists(){
+      return this.$store.state.lists
     }
   },
   created(){
-    this.getAddressList();
+    this.$store.dispatch('getAddressList')
   },
   methods:{
-    getAddressList(){
-      axios.get(url.addressLists).then(res=>{
-          this.lists = res.data.lists
-      })
-    },
+    // getAddressList(){
+    //   axios.get(url.addressLists).then(res=>{
+    //       this.lists = res.data.lists
+    //   })
+    // },
     toEdit(list){
       this.$router.push({name:'addressEdit',query:{
         type:'edit',
