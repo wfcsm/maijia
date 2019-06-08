@@ -19,9 +19,11 @@ let routes  = [{
         redirect:"addressList"
     },{
         path:'addressList',
+        name:'addressList',
         component:addressList,
     },{ 
         path:'addressEdit',
+        name:'addressEdit',
         component:addressEdit
     }]
 }]
