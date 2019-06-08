@@ -67,7 +67,7 @@ export default {
             addressData:addressData,
             cityList:null,
             districtList:null,
-            flag:true
+            flag:1,
         }
     },
     mounted(){
@@ -132,9 +132,9 @@ export default {
         this.cityValue=-1
         this.districtValue = -1
         if(this.type === "edit"){
-          if(this.flag){
+          if(this.flag!==3){
             this.cityValue = parseInt(this.instance.cityValue)
-            this.flag = false
+            this.flag ++
           }else{
             this.cityValue=-1
             this.districtValue = -1
@@ -154,9 +154,9 @@ export default {
         this.districtList = list[index].children
         this.districtValue = -1
         if(this.type === "edit"){
-          if(this.flag){
+          if(this.flag!==3){
             this.districtValue = parseInt(this.instance.districtValue)
-            this.flag =  false
+            this.flag ++
           }else{
             this.districtValue = -1
           }
