@@ -33,7 +33,6 @@ new Vue({
         pageNum:this.pageNum,
         pageSize:this.pageSize
       }).then(res => {
-        console.log(1)
         let curLists = res.data.lists;
         if(curLists.length < this.pageSize){
             this.allLoaded = true
