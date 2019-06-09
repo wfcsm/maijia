@@ -17,7 +17,7 @@
 ![address2.png](https://i.loli.net/2019/06/09/5cfca2431e7a839879.png)
 
 ![address.png](https://i.loli.net/2019/06/09/5cfca2433661532435.png)
-此页面只实现了地址管理，其他功能有时间在加
+
 
 ## Build Setup
 
