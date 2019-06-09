@@ -62,13 +62,22 @@ export default {
             districtValue:-1,
             address:'',
             id:'',
+            isDefault:this.$route.query.isDefault,
             type:this.$route.query.type,
             instance:this.$route.query.instance,
             addressData:addressData,
             cityList:null,
             districtList:null,
             flag:1,
+            cityName:'',
+            districtName:'',
+            provinceName:''
         }
+    },
+    computed:{
+       lists(){
+         return this.$store.state.lists
+       }
     },
     mounted(){
       if(this.type==='edit'){
@@ -76,50 +85,45 @@ export default {
         this.tel=this.instance.tel
         this.provinceValue=parseInt(this.instance.provinceValue)
         this.id = this.instance.id
-      
-        // // this.cityFirst() 
-        // // console.log(this.cityList)
-        // this.cityValue=parseInt(this.instance.cityValue)
-        // // console.log(this.cityValue)
-        // // this.districtFirst()
-        // this.districtValue=parseInt(this.instance.districtValue)
+        this.isDefault=this.instance.isDefault
         this.address = this.instance.address
+
+        this.cityName=this.instance.cityName
+        this.districtName=this.instance.districtName
+        this.provinceName = this.instance.provinceName
       }
     },
     methods:{
       add(){
-        let {name,tel,provinceValue,cityValue,districtValue,address} =this
-        let data = {name,tel,provinceValue,cityValue,districtValue,address}
+        let {name,tel,provinceValue,cityValue,districtValue,address,isDefault,cityName,districtName,provinceName} =this
+        let data = {name,tel,provinceValue,cityValue,districtValue,address,isDefault,cityName,districtName,provinceName}
         if(this.type === 'add'){
-          axios.post(url.addressAdd,data).then(res=>{
-              this.$router.push({name:'addressList'})
-          })
+          this.$store.dispatch('addAction',data)
         }
         if(this.type === 'edit'){
           data.id = this.id
-          axios.post(url.addressUpdate,data).then(res=>{
-              this.$router.push({name:'addressList'})
-          })
+          this.$store.dispatch('editAction',data) 
         }
       },
       remove(){
         let {id}=this
         if(window.confirm("确认删除?")){
-          axios.post(url.addressRemove,{id}).then(res=>{
-            this.$router.go(-1)
-          })
+            this.$store.dispatch('removeAction',id)
         }
       },
       setDefault(){
         let {id}=this
-        console.log(id);
-        axios.post(url.addressSetDefault,{id}).then(res=>{
-          this.$router.go(-1)
-        })
-        
+        this.$store.dispatch('setDefaultAction',id)
       }
     },
     watch:{
+      lists:{
+        handler(){
+          this.$router.push({name:'addressList'});
+        },
+        deep:true
+       
+      },
       provinceValue(newValue,oldValue){
         let list = this.addressData.list
         if(newValue===-1){

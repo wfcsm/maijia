@@ -35,7 +35,10 @@ export default {
     }
   },
   created(){
-    this.$store.dispatch('getAddressList')
+    if(!this.lists){
+      this.$store.dispatch('getAddressList')
+    }
+    
   },
   methods:{
     // getAddressList(){
